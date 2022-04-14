@@ -3,6 +3,7 @@ class Attractor {
   ArrayList<PVector> points = new ArrayList<PVector>();
   
   float x, y, z, power, noise, step, scale, startColor, endColor;
+  boolean iso;
   Expression dxe;
   Expression dye; 
   Expression dze;
@@ -10,7 +11,7 @@ class Attractor {
   String[] dyo;
   String[] dzo;
   
-  Attractor (float x, float y, float z, float power, float noise, float step, float scale, float startColor, float endColor, String dx, String dy, String dz) {  
+  Attractor (float x, float y, float z, float power, float noise, float step, float scale, float startColor, float endColor, boolean iso, String dx, String dy, String dz) {  
     this.x = x;
     this.y = y;
     this.z = z;
@@ -20,6 +21,7 @@ class Attractor {
     this.scale = scale;
     this.startColor = startColor;
     this.endColor = endColor;
+    this.iso = iso;
     
     Compile.init();
     
@@ -44,12 +46,19 @@ class Attractor {
     //}
   
   }
+  
+  float[] toIso(float lx, float ly, float lz) {
+    float u = lx * cos(360) + ly * cos(360 + radians(120)) + lz * cos(360 - radians(120));
+    float v = lx * sin(360) + ly * sin(360 + radians(120)) + lz * sin(360 - radians(120));
+    return new float[] {u,v};
+  }
+  
   void update(){
-    print("|", x, y, z, "|");
-    float dxdt = dxe.eval(y,x).answer().toFloat()*step;
-    float dydt = dye.eval(x,z,y).answer().toFloat()*step;
-    float dzdt = dze.eval(x,y,z).answer().toFloat()*step;
-    //print("|", dxdt, dydt, dzdt, "|");
+    //print("|", x, y, z, "|", "\n");
+    float dxdt = dxe.eval(x,y,z).answer().toFloat()*step;
+    float dydt = dye.eval(y,z,x).answer().toFloat()*step;
+    float dzdt = dze.eval(z,x,y).answer().toFloat()*step;
+    //print("|", dxdt, dydt, dzdt, "|", "\n");
     
     x += dxdt;
     y += dydt;
@@ -58,6 +67,7 @@ class Attractor {
     points.add(new PVector(x, y, z));
     
   }
+  
   void drawp(){
     translate(displayWidth/2, displayHeight/2, 0);
     stroke(255);
@@ -73,7 +83,17 @@ class Attractor {
       stroke(hu, 255, i);
       strokeWeight(i/75);
       
-      vertex(points.get(i).x*scale, points.get(i).y*scale, points.get(i).z*scale);
+      if(iso){
+        float u = toIso(points.get(i).x,points.get(i).y,points.get(i).z)[0];
+        float v = toIso(points.get(i).x,points.get(i).y,points.get(i).z)[1];
+        
+        vertex(u*scale + random(noise), v*scale + random(noise), 0);
+        
+      }
+      else{
+        vertex(points.get(i).x*scale + random(noise), points.get(i).y*scale + random(noise), points.get(i).z*scale + random(noise));
+        
+      }
       
       hu += .4*c;
       if (hu > endColor) {

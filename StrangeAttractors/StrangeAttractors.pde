@@ -1,6 +1,6 @@
 import org.quark.jasmine.*;
   
-Attractor[] attractors = {new Attractor(1, 1, 1, 1, 0, .002, 45, 135, 200, "36*(y-x)", "-x*z + 20*y", "x*y - 3*z")};
+Attractor[] attractors = {new Attractor(1, 0, 0, 1, 0, .005, 20, 135, 200, true, "-1.4*x-4*y-4*z-y*y", "-1.4*y-4*z-4*x-z*z", "-1.4*z-4*x-4*y-x*x")};
 
 void setup() {
   size(displayWidth, displayHeight, P3D);
@@ -11,7 +11,6 @@ void setup() {
 
 
 void draw() {
-  rect(50, 50, 25, 25);
   for(Attractor a: attractors){
     background(0);
     a.update();
