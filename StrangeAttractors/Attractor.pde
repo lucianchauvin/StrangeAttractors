@@ -1,17 +1,16 @@
 class Attractor { 
   
-  ArrayList<PVector> points = new ArrayList<PVector>();
+  private ArrayList<PVector> points = new ArrayList<PVector>();
   
+  String name;
   float x, y, z, xoffset, yoffset, power, noise, step, scale, startColor, endColor;
   boolean iso;
   Expression dxe;
   Expression dye; 
   Expression dze;
-  String[] dxo;
-  String[] dyo;
-  String[] dzo;
   
-  Attractor (float x, float y, float z, float xoffset, float yoffset, float power, float noise, float step, float scale, float startColor, float endColor, boolean iso, String dx, String dy, String dz) {  
+  Attractor (String name, float x, float y, float z, float xoffset, float yoffset, float power, float noise, float step, float scale, float startColor, float endColor, boolean iso, String dx, String dy, String dz) {  
+    this.name = name;
     this.x = x;
     this.y = y;
     this.z = z;
@@ -30,22 +29,6 @@ class Attractor {
     this.dxe = Compile.expression(dx,true);
     this.dye = Compile.expression(dy,true);
     this.dze = Compile.expression(dz,true);
-    
-    //for(String c: split(dx,"")){
-    //  if(c.equals("x") || c.equals("y") || c.equals("z")){
-    //    append(dxo, c);
-    //  }
-    //}
-    //for(String c: split(dy,"")){
-    //  if(c.equals("x") || c.equals("y") || c.equals("z")){
-    //    append(dyo, c);
-    //  }
-    //}
-    //for(String c: split(dz,"")){
-    //  if(c.equals("x") || c.equals("y") || c.equals("z")){
-    //    append(dzo, c);
-    //  }
-    //}
   
   }
   
@@ -56,38 +39,37 @@ class Attractor {
   }
   
   void update(){
-    print("|", x, y, z, "|", "\n");
+    // print(name, "|", x, y, z, "|", "\n");
     float dxdt = dxe.eval(x,y,z).answer().toFloat()*step;
     float dydt = dye.eval(x,y,z).answer().toFloat()*step;
     float dzdt = dze.eval(x,y,z).answer().toFloat()*step;
-    //print("|", dxdt, dydt, dzdt, "|", "\n");
+    //print(name, "|", dxdt, dydt, dzdt, "|", "\n");
     
-    x += dxdt;
-    y += dydt;
-    z += dzdt;
+    this.x += dxdt;
+    this.y += dydt;
+    this.z += dzdt;
     
-    points.add(new PVector(x, y, z));
+    this.points.add(new PVector(this.x, this.y, this.z)); 
   }
   
   void drawp(){
     translate(displayWidth/2 + xoffset, displayHeight/2 + yoffset, 0);
-    stroke(255);
     noFill();
     
-    float hu = startColor;
+    float hu = this.startColor;
     float c = 1; 
     
     beginShape();
-    for (int i = 0; i < points.size(); i++) {
+    for (int i = 0; i < this.points.size(); i++) {
       stroke(hu, 255, i);
       strokeWeight(i/75);
       if(iso){
-        float u = toIso(points.get(i).x,points.get(i).y,points.get(i).z)[0];
-        float v = toIso(points.get(i).x,points.get(i).y,points.get(i).z)[1];
-        vertex(u*scale + random(noise), v*scale + random(noise), 0);
+        float u = toIso(this.points.get(i).x,this.points.get(i).y,this.points.get(i).z)[0];
+        float v = toIso(this.points.get(i).x,this.points.get(i).y,this.points.get(i).z)[1];
+        vertex(u*this.scale + random(this.noise), v*this.scale + random(this.noise), 0);
       }
       else{
-        vertex(points.get(i).x*scale + random(noise), points.get(i).y*scale + random(noise), points.get(i).z*scale + random(noise));
+        vertex(this.points.get(i).x*this.scale + random(this.noise), this.points.get(i).y*this.scale + random(this.noise), this.points.get(i).z*this.scale + random(this.noise));
       }
       hu += .4*c;
       if (hu > endColor) {
@@ -96,10 +78,12 @@ class Attractor {
       if (hu < startColor) {
         c = 1;
       }
-      if (points.size() > 255) {
-        points.remove(0);
+      if (this.points.size() > 255) {
+        this.points.remove(0);
       }
     }
     endShape();
+  translate((displayWidth/2 + xoffset)*-1, (displayHeight/2 + yoffset)*-1, 0);
   }
+
 } 

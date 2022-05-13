@@ -36,9 +36,9 @@ float toisov(float lx, float ly, float lz) {
 
 void draw() {
   background(0);
-  float dxdt = -1*s*(x+y);
-  float dydt = -1*y-(s*x*z);
-  float dzdt = s*x*y+v;
+  float dxdt = -1*10*(x+y);
+  float dydt = -1*y-(10*x*z);
+  float dzdt = 10*x*y+v;
   
   x = x + dxdt*o;
   y = y + dydt*o;
