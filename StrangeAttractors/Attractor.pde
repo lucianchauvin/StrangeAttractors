@@ -2,6 +2,7 @@ class Attractor {
   
   private ArrayList<PVector> points = new ArrayList<PVector>();
   
+  
   String name;
   float x, y, z, xoffset, yoffset, power, noise, step, scale, startColor, endColor;
   boolean iso;
@@ -64,8 +65,10 @@ class Attractor {
       stroke(hu, 255, i);
       strokeWeight(i/75);
       if(iso){
-        float u = toIso(this.points.get(i).x,this.points.get(i).y,this.points.get(i).z)[0];
-        float v = toIso(this.points.get(i).x,this.points.get(i).y,this.points.get(i).z)[1];
+        float[] cords = toIso(this.points.get(i).x,this.points.get(i).y,this.points.get(i).z);
+        float u = cords[0];
+        float v = cords[1];
+
         vertex(u*this.scale + random(this.noise), v*this.scale + random(this.noise), 0);
       }
       else{
