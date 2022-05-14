@@ -30,4 +30,11 @@ void draw() {
     a.update();
     a.drawp();
   }
+  if(frameCount > 80){
+    // saveFrame("outs/#####.png");
+  }
+  if(frameCount > 4500){
+    noLoop();
+  }
+  System.out.println(frameCount/4500.0);
 }
