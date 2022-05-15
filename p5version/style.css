@@ -1,0 +1,30 @@
+html,
+* {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+    color: white;
+}
+
+button {
+    background-color: white;
+    color: black;
+    padding-left: 3px;
+    padding-right: 3px;
+    border: white;
+}
+
+button:hover {
+    background-color: lightgray;
+    color: white;
+}
+
+button:active {
+    background-color: black;
+    color: white;
+}
+
+canvas {
+    display: block;
+}

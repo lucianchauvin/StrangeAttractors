@@ -1,5 +1,4 @@
 import org.quark.jasmine.*;
-
 import peasy.*;
 
 PeasyCam cam;
@@ -30,7 +29,6 @@ void setup() {
 
   cam.rotateY(radians(-1*(90+45)));
   cam.rotateX(radians(30));
-
 }
 
 void draw() {

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://freshfork.github.io/p5.EasyCam/p5.easycam.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+
+</head>
+
+<body>
+    <div>
+        <button id="set" onclick="setl()" name="set">SET</button>
+        <label>name:</label>
+        <input type="text" id="name" name="name" value="Halvorsen" size="12">
+        <label>x:</label>
+        <input type="text" id="x" name="x" value=1 size="1">
+        <label>y:</label>
+        <input type="text" id="y" name="y" value=0 size="1">
+        <label>z:</label>
+        <input type="text" id="z" name="z" value=0 size="1">
+        <label>scale:</label>
+        <input type="text" id="scale" name="scale" value=20 size="1">
+        <label>step:</label>
+        <input type="text" id="step" name="step" value=.005 size="1">
+        <label>length:</label>
+        <input type="text" id="length" name="length" value=255 size="1">
+        <label>start color:</label>
+        <input type="text" id="sc" name="sc" value=165 size="1">
+        <label>end color:</label>
+        <input type="text" id="ec" name="ec" value=280 size="1">
+        <label>dx:</label>
+        <input type="text" id="dx" name="dx" value="-1.4*x+-4*y+-4*z-y*y" size="16">
+        <label>dy:</label>
+        <input type="text" id="dy" name="dy" value="-4*x+-1.4*y+-4*z+-z*z" size="16">
+        <label>dz:</label>
+        <input type="text" id="dz" name="dz" value="-4*x+-4*y+-1.4*z+-x*x" size="16">
+        <br>
+        <label name="presets">presets:</label>
+        <button onclick="preset('hal')">Halvorsen</button>
+        <button onclick="preset('lor')">Lorenze</button>
+        <button onclick="preset('bur')">BurkeShaw</button>
+        <button onclick="preset('spo')">Spott-Linz</button>
+        <button onclick="preset('nos')">Nose-Hoover</button>
+
+
+
+    </div>
+
+    <script src="attractor.js"></script>
+    <script src="sketch.js"></script>
+</body>
+
+</html>

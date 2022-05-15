@@ -33,12 +33,6 @@ class Attractor {
   
   }
   
-  float[] toIso(float lx, float ly, float lz) {
-    float u = lx * cos(360) + ly * cos(360 + radians(120)) + lz * cos(360 - radians(120));
-    float v = lx * sin(360) + ly * sin(360 + radians(120)) + lz * sin(360 - radians(120));
-    return new float[] {u,v};
-  }
-  
   void update(){
     // print(name, "|", x, y, z, "|", "\n");
     float dxdt = dxe.eval(x,y,z).answer().toFloat()*step;
