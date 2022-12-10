@@ -7,3 +7,5 @@ Strange Attractors are a set of 3D parametric derivatives that describe the grad
 1. [DynamicMath](https://www.dynamicmath.xyz/strange-attractors/)
 2. [3d-Meier](http://www.3d-meier.de/tut19/Seite0.html)
 
+# Winter Break Project
+Since there are certain points that either are stable or blow up to infinity I wanted to try to map this region. It sounds like the perfect problem that can generate a cool fractal or 2.
