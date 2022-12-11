@@ -6,9 +6,12 @@ Strange Attractors are a set of 3D parametric derivatives that describe the grad
 
 # Winter Break Project
 Since there are certain points that either are stable or blow up to infinity I wanted to try to graph this region. These are some of the results:
+
 ![](https://github.com/lucianchauvin/StrangeAttractors/blob/master/1.png)
 ![](https://github.com/lucianchauvin/StrangeAttractors/blob/master/2.png)
 ![](https://github.com/lucianchauvin/StrangeAttractors/blob/master/3.png)
+
+Images generated using Texas A&M High Performance Research Computing utilities. 
 
 # Sources
 1. [DynamicMath](https://www.dynamicmath.xyz/strange-attractors/)
