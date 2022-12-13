@@ -4,7 +4,7 @@ Strange Attractors are a set of 3D parametric derivatives that describe the grad
 ![](https://github.com/lucianchauvin/StrangeAttractors/blob/master/Halvorsen/halvorsenAttractor.gif)
 
 
-# Winter Break Project
+# Modeling On TAMU Computing Cluster
 Since there are certain points that either are stable or blow up to infinity I wanted to try to graph this region. These are some of the results:
 
 ![](https://github.com/lucianchauvin/StrangeAttractors/blob/master/1.png)
